@@ -1,7 +1,9 @@
- # Deploy Glitch
+# ECOMMERCE CODERHOUSE - 1ERA ENTREGA DEL TP FINAL
+## 👩‍💻 Tutora: Laura Acuña
+## Deploy Glitch
   ⏯ [Mirá cómo funciona éste proyecto en GLITCH](https://longing-darkened-lillipilli.glitch.me)
 
-# Tutorial
+## Tutorial
 
  ⏯ [Te cuento como resolver el desafío aquí- Tutorial](https://youtu.be/DEpXU6WZGp8)
  
