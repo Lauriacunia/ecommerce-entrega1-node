@@ -1,4 +1,6 @@
-/** Recordar agregar el script de socket en el html
+/** 
+ * 📲 WEBSOCKETS
+ * Recordar agregar el script de socket en el html
  * <script src="/socket.io/socket.io.js"></script>
  */
  const socket = io();
@@ -65,7 +67,14 @@
  })
 
 
- getNow = () => {
+getNow = () => {
     const now = new Date();
     return `${now.getHours()}:${now.getMinutes()}`;
 }
+
+/** 👷 Detalle de producto */
+const cardProducto = document.getElementById('card-producto');
+//al hacer click la card navegar a la ruta /producto/:id
+cardProducto.addEventListener("onclick", () => {
+  window.location.href = "/api/productos/4";
+});

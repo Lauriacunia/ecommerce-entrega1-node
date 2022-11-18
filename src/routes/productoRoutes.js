@@ -23,14 +23,16 @@ router.use(multer({storage}).single('thumbnail'));
 /** LISTAR TODOS LOS PRODUCTOS */
 router.get('/', (req, res) => {
    const products = containerProducts.getAll(file)
-   res.render('index.ejs', { products ,  myScript});
+   const content = "listarProductos";
+   res.render('index.ejs', { products ,  myScript, content});
 }
 );
 
 router.get('/:id', (req, res) => {  
     const { id } = req.params;
-    const product = containerProducts.getById(parseInt(id), file);
-    product ? res.render('partials/detail-producto.ejs', { product, myScript }) : res.status(404).json({error: 'producto no encontrado'});
+    const producto = containerProducts.getById(parseInt(id), file);
+    content = "detalleProducto";
+    producto ? res.render('index.ejs', { producto, myScript, content }) : res.status(404).json({error: 'producto no encontrado'});
 });
 
 /** AGREGAR UN PRODUCTO */

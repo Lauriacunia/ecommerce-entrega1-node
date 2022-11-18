@@ -23,20 +23,34 @@
     <title>Ecommerce Coderhouse</title>
   </head>
   <body>
+    <!-- NAVBAR -->
     <%- include('./partials/navbar.ejs') %>
-    <div class="container" style="display: flex">
-              <%- include('./partials/search.ejs') %>
-    </div>
-    <div class="container is-flex is-justify-content-start mt-6" >
 
-        <div class="notification is-primary">   
-          <%- include('./partials/form.ejs') %> <%-
-          include('./partials/list.ejs')%>
-        </div>
-        <div class="notification is-danger" style="margin-left: 25px">
-          <%- include('./partials/chat.ejs')%>
-        </div>
-    </div>
+    <!-- LISTAR PRODUCTOS + BUSCADOR + CHAT -->
+    <%if (content=='listarProductos' ) { %>
+      <div class="container" style="display: flex">
+                <%- include('./partials/search.ejs') %>
+      </div>  
+      <div class="container is-flex is-justify-content-start mt-6" >
+          <div class="notification is-primary">   
+            <%- include('./partials/form.ejs') %> <%-
+            include('./partials/list.ejs')%>
+          </div>
+          <div class="notification is-danger" style="margin-left: 25px">
+            <%- include('./partials/chat.ejs')%>
+          </div>
+      </div>
+    <% } %>
+
+    <!-- DETALLE DE PRODUCTO -->
+    <%if (content == 'detalleProducto') { %>
+      <%- include('./partials/detail-producto.ejs')%>
+    <% } %>
+
+    <!-- CARRITO -->
+    <%if (content=='carrito' ) { %>
+      <%- include('baseCarrito.ejs')%>
+    <% } %>
     <%- include('./partials/footer.ejs')%>
 
     <script src="/socket.io/socket.io.js"></script>
