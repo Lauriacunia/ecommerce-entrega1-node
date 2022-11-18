@@ -27,12 +27,11 @@ router.get('/', (req, res) => {
 }
 );
 
-// router.get('/:id', (req, res) => {  
-//     const { id } = req.params;
-//     const product = containerProducts.getById(parseInt(id), file);
-//     product ? res.json({product_id: id, producto: product}) 
-//             : res.json({message: 'Producto no encontrado. Id: '+ id});
-// });
+router.get('/:id', (req, res) => {  
+    const { id } = req.params;
+    const product = containerProducts.getById(parseInt(id), file);
+    product ? res.render('partials/detail-producto.ejs', { product, myScript }) : res.status(404).json({error: 'producto no encontrado'});
+});
 
 /** AGREGAR UN PRODUCTO */
 router.post('/', (req, res) => {

@@ -16,12 +16,20 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
+    <link rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👩‍💻</text></svg>">
+    <title>Ecommerce Coderhouse</title>
   </head>
   <body>
     <%- include('./partials/navbar.ejs') %>
-    <div class="container is-flex is-justify-content-start" >
-        <div class="notification is-primary mt-6">   
+    <div class="container" style="display: flex">
+              <%- include('./partials/search.ejs') %>
+    </div>
+    <div class="container is-flex is-justify-content-start mt-6" >
+
+        <div class="notification is-primary">   
           <%- include('./partials/form.ejs') %> <%-
           include('./partials/list.ejs')%>
         </div>
@@ -29,6 +37,7 @@
           <%- include('./partials/chat.ejs')%>
         </div>
     </div>
+    <%- include('./partials/footer.ejs')%>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="../main.js"></script>
