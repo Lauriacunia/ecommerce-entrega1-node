@@ -6,11 +6,15 @@ const containerProducts = new Container();
 const multer = require('multer');
 const myScript = 'public/main.js';
 
+getRandomInt = (max) => {
+    return Math.floor(Math.random() * max);
+}
+
 /**  🗨 Configuración de Multer (para subir archivos).
      'photo' es el nombre del campo en el formulario.*/
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'public/uploads');
+      cb(null, 'src/public/uploads');
     },
     filename: function (req, file, cb) {
       cb(null, file.originalname);
@@ -42,26 +46,34 @@ router.post('/', (req, res) => {
   const photo = req.file;
   // 🗨 antes de guardar el objeto le añado la propiedad para que se pueda acceder a la foto.
   body.thumbnail = "/uploads/" + photo.filename;
+  body.timestamp = Date.now();
+  body.stock = getRandomInt(5000);
+  body.code = getRandomInt(100000);
+  console.log("body", body);
   containerProducts.saveProduct(body, file);
-  res.redirect("/api/products");
+  res.redirect("/api/productos");
 }
 );
 
-// router.put('/:id', (req, res) => {
-//     const { id } = req.params;
-//     const { body } = req;
-//     const product = containerProducts.getById(parseInt(id), file);
-//     product ? containerProducts.updateProduct(id,body, file) : res.json({message: 'Producto no encontrado. Id: '+ id});
-//     res.json({message: 'Producto actualizado', producto: body});
-// }
-// );
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const { body } = req;
+    const product = containerProducts.getById(parseInt(id), file);
+    product ? containerProducts.updateProduct(id,body, file) : res.json({message: 'Producto no encontrado. Id: '+ id});
+    res.redirect("/api/productos");
+}
+);
 
-// router.delete('/:id', (req, res) => {
-//     const { id } = req.params;
-//     const product = containerProducts.deleteById(parseInt(id), file);
-//     product ? res.json({message: 'Producto eliminado', id: id}) : res.json({message: 'Producto no encontrado. Id: '+ id});
-// }
-// );
+router.post('/borrar/:id', (req, res) => {
+    console.log("borrar producto id:", req.params.id);
+    const { id } = req.params;
+    const product = containerProducts.getById(parseInt(id), file);
+    product
+      ? containerProducts.deleteById(id, file)
+      : res.json({ message: "Producto no encontrado. Id: " + id }).status(400);
+    res.redirect("/api/productos");
+}
+);
 
 
 module.exports = router;

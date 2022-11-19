@@ -1,1 +1,26 @@
-<h1>soy el detalle del producto id: <%=producto.id %> </h1>
+<div class="container mt-6">
+    <div class="notification is-primary">
+        <h1 class="is-size-3"><%=producto.title %>
+        </h1>
+    </div>
+    <div class="is-flex ">
+        <figure class="image" style="width: 350px">
+            <img src="<%= producto.thumbnail %>">
+        </figure>
+        <div class="is-flex ml-6">
+            <h3><%=producto.description %></h3>
+        </div>
+        
+    </div>
+    
+    <p class="is-size-2">$ <%=producto.price %>
+    </p>
+
+    <form action="/api/productos" class="mt-6">
+        <button class="button is-outlined is-info is-small" type="submit">
+            <span class="icon">
+                <i class="fas fa-arrow-left"></i>
+            </span></button>
+    </form>
+</div>
+

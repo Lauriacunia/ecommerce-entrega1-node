@@ -73,8 +73,8 @@ getNow = () => {
 }
 
 /** 👷 Detalle de producto */
-const cardProducto = document.getElementById('card-producto');
-//al hacer click la card navegar a la ruta /producto/:id
-cardProducto.addEventListener("onclick", () => {
-  window.location.href = "/api/productos/4";
-});
+
+function showProductDetail(productId) {
+    window.location.href = `/api/productos/${productId}`;
+}
+

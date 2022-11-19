@@ -1,6 +1,6 @@
 <section>
   <div class="container mt-6" style="max-width: 500px">
-    <form action="/api/products" method="post" enctype="multipart/form-data">
+    <form action="/api/productos" method="post" enctype="multipart/form-data">
       <h3 class="is-size-3 mb-5">Ingrese un nuevo producto</h3>
       <div class="field">
         <label class="label">Nombre</label>
@@ -25,6 +25,13 @@
             value=""
             name="price"
           />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Descripción</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-success" type="text" placeholder="Ingrese una descripción del producto" value="" name="description" />
         </div>
       </div>
 
