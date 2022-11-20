@@ -28,7 +28,6 @@ router.use(multer({storage}).single('thumbnail'));
 router.get('/', (req, res) => {
    const products = containerProducts.getAll(file)
    const content = "listarProductos";
-
    res.render('index.ejs', { products ,  myScript, content});
 }
 );
@@ -63,6 +62,7 @@ router.post('/', (req, res) => {
 router.get("/actualizar/:id", (req, res) => {
   const { id } = req.params;
   console.log("id", id);
+
   const producto = containerProducts.getById(parseInt(id), file);
   const content = "actualizarProducto";
   producto ? res.render('index.ejs', { producto, myScript, content }) : res.status(404).json({error: 'producto no encontrado'});
@@ -72,6 +72,10 @@ router.post('/actualizar/:id', (req, res) => {
     const { id } = req.params;
     const { body } = req;
     console.log("id", id);
+    console.log("req.body", req.body);
+    const photo = req.file;
+    // 🗨 antes de guardar el objeto le añado la propiedad para que se pueda acceder a la foto.
+    body.thumbnail = "/uploads/" + photo.filename;
     const product = containerProducts.getById(parseInt(id), file);
     product ? containerProducts.updateProduct(id,body, file) : res.json({message: 'Producto no encontrado. Id: '+ id});
     res.redirect("/api/productos");
