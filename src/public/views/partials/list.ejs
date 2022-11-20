@@ -17,8 +17,8 @@
           </div>
         </div>
       </div>
-      <footer class="card-footer is-justify-content-right">
-        <form action="{% url 'edit_post' post.id %}">
+      <footer class="is-flex">
+        <form action="/api/productos/actualizar/<%= product.id%>" method="GET">
           <button class="button is-outlined is-link is-small mr-3" type="submit">
             <span class="icon">
               <i class="fas fa-pen"></i>

@@ -1,3 +1,4 @@
+console.log("🔥 main.js loaded");
 /** 
  * 📲 WEBSOCKETS
  * Recordar agregar el script de socket en el html
@@ -77,4 +78,3 @@ getNow = () => {
 function showProductDetail(productId) {
     window.location.href = `/api/productos/${productId}`;
 }
-

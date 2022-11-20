@@ -28,6 +28,7 @@ router.use(multer({storage}).single('thumbnail'));
 router.get('/', (req, res) => {
    const products = containerProducts.getAll(file)
    const content = "listarProductos";
+
    res.render('index.ejs', { products ,  myScript, content});
 }
 );
@@ -55,9 +56,22 @@ router.post('/', (req, res) => {
 }
 );
 
-router.put('/:id', (req, res) => {
+/**🗨 Actualizar debería ser PUT y Borrar DELETE
+ *  pero por cuestiones de html y el formulario 
+ * solo se puede hacer con POST o GET
+ */
+router.get("/actualizar/:id", (req, res) => {
+  const { id } = req.params;
+  console.log("id", id);
+  const producto = containerProducts.getById(parseInt(id), file);
+  const content = "actualizarProducto";
+  producto ? res.render('index.ejs', { producto, myScript, content }) : res.status(404).json({error: 'producto no encontrado'});
+});
+
+router.post('/actualizar/:id', (req, res) => {
     const { id } = req.params;
     const { body } = req;
+    console.log("id", id);
     const product = containerProducts.getById(parseInt(id), file);
     product ? containerProducts.updateProduct(id,body, file) : res.json({message: 'Producto no encontrado. Id: '+ id});
     res.redirect("/api/productos");

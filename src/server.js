@@ -6,7 +6,7 @@ const path = require('path');
 const {Server: ioServer} = require('socket.io');
 const http = require('http');
 const app = express();
-const PORT = 8080 || process.env.PORT;
+const PORT = 8081 || process.env.PORT;
 
 
 /**🗨 Tenemos dos servidores:*/
@@ -27,6 +27,11 @@ app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 app.set('views',path.join(__dirname, '/public/views' ));
 app.set('view engine', 'ejs');
+
+app.use((request, response, next) => {
+  response.set("X-Content-Type-Options", "nosniff");
+  next();
+});
 
 
 /** ROUTER */

@@ -32,6 +32,7 @@ class Container {
        const allProductsArray = this.read(file);
          let index = allProductsArray.findIndex(product => product.id == id);
             if(index >= 0){
+                product.id= id;
                 allProductsArray[index] = product;
                 this.write(allProductsArray, file);
                 console.log('Actualizado');
