@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
   body.stock = getRandomInt(5000);
   body.code = getRandomInt(100000);
   console.log("body", body);
-  containerProducts.saveProduct(body, file);
+  containerProducts.save(body, file);
   res.redirect("/api/productos");
 }
 );
@@ -71,13 +71,11 @@ router.get("/actualizar/:id", (req, res) => {
 router.post('/actualizar/:id', (req, res) => {
     const { id } = req.params;
     const { body } = req;
-    console.log("id", id);
-    console.log("req.body", req.body);
     const photo = req.file;
     // 🗨 antes de guardar el objeto le añado la propiedad para que se pueda acceder a la foto.
     body.thumbnail = "/uploads/" + photo.filename;
     const product = containerProducts.getById(parseInt(id), file);
-    product ? containerProducts.updateProduct(id,body, file) : res.json({message: 'Producto no encontrado. Id: '+ id});
+    product ? containerProducts.update(id,body, file) : res.json({message: 'Producto no encontrado. Id: '+ id});
     res.redirect("/api/productos");
 }
 );
