@@ -13,9 +13,16 @@
 
 <body>
     <div class="container" style="display: flex">
+        <%if (mensaje) { %>
+        <div class="notification is-danger">
+            <p><%= mensaje %></p>
+        </div>
+        <% } %>
+        <%if (!mensaje) { %>
         <div class="notification is-primary">
             Soy carrito
         </div>
+        <% } %>
     </div>  
 </body>
 
